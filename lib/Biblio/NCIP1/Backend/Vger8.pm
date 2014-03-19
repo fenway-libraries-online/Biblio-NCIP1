@@ -1,7 +1,6 @@
 package Biblio::NCIP1::Backend::Vger8;
 
-use FLO::Vger::DBI;
-use FLO::Vger::QueryLib;
+use Biblio::Vger::DBI;
 use Biblio::SIP2::Vger8;
 use Biblio::NCIP1::Constants qw(:requests :errors);
 use Biblio::NCIP1::Config;
@@ -19,12 +18,24 @@ sub fail($);
 my $dbh;
 my %sql2sth;
 
-my $query_lib = FLO::Vger::QueryLib->new;
-
-my $sql_item_home_circ_location = $query_lib->sql('circ/item_barcode_to_home_circ_location_code');
-
-# XXX QueryLib-ify these queries later, as I have time...
-
+my $sql_item_home_circ_location = q{
+    SELECT l.location_code
+    FROM   circ_policy_locs cpl,
+           location l
+    WHERE  cpl.location_id = l.location_id
+    AND    circ_location = 'Y'
+    AND    cpl.circ_group_id IN (
+                SELECT cpl.circ_group_id
+                FROM   circ_policy_locs cpl,
+                       location l,
+                       item i,
+                       item_barcode ib
+                WHERE  cpl.location_id = l.location_id
+                AND    i.perm_location = l.location_id
+                AND    i.item_id = ib.item_id
+                AND    ib.item_barcode = :p1
+           )
+};
 my $sql_patron_by_id = q{
     SELECT p.last_name, p.first_name, b.patron_barcode, p.patron_pin
     FROM   patron p, patron_barcode b
@@ -614,7 +625,7 @@ sub request_file {
 
 sub dbh {
     my ($self) = @_;
-    return $dbh ||= FLO::Vger::DBI->connect(
+    return $dbh ||= Biblio::Vger::DBI->connect(
         database => $self->{config}{voyager}{database} || 'VGER',
     );
 }
