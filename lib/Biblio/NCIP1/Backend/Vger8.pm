@@ -68,7 +68,8 @@ my $sql_patron_email = q{
     FROM   patron_address a
     WHERE  a.patron_id = ?
     AND    a.address_type = 3
-    AND    SYSDATE BETWEEN a.effect_date AND a.expire_date
+    AND    SYSDATE >= a.effect_date
+    AND    (a.expire_date IS NULL OR a.expire_date > SYSDATE)
 };
 my $sql_item_barcode_to_id = q{
     SELECT item_id
