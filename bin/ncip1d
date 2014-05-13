@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Biblio::NCIP1::Common;
+use Biblio::NCIP1::Responder;
+use Biblio::NCIP1::Server;
+
+use Getopt::Std;
+
+$0 = 'ncip1d';
+
+my %opt;
+getopts('t:r:dT', \%opt);
+my $root = $opt{'r'} || $ENV{'NCIP1_ROOT'} || '/usr/local/ncip1';
+my $target = $ENV{'NCIP1_TARGET'} = $opt{'t'} || $ENV{'NCIP1_TARGET'} || die "No target specified";
+
+if ($opt{T}) {
+    eval 'use Biblio::NCIP1::Trace';
+    Biblio::NCIP1::Trace::trace(1);
+}
+my $ncip = Biblio::NCIP1->new(
+    'root' => $root,
+    'target' => $target,
+);
+$ncip->run;

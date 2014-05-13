@@ -1,0 +1,115 @@
+#!/bin/zsh -e
+
+typeset root={NCIP1_ROOT:-/usr/local/ncip1}
+typeset -a targets opts
+# Note: opts isn't used at this point
+
+main() {
+    cd $root
+    (( $#argv > 0 )) || usage
+    typeset cmd=$1; shift
+    case $cmd in
+        (start)
+            start $@ ;;
+        (stop)
+            stop $@ ;;
+        (status)
+            status $@ ;;
+        (restart)
+            stop; start $@ ;;
+        (*)
+            usage ;;
+    esac
+}
+
+start() {
+    typeset target debug=false opt
+    integer pid
+    while getopts :d: opt; do
+        case $opt in
+            (d) debug=true; target=$OPTARG ;;
+        esac
+    done
+    shift $(( OPTIND - 1 ))
+    if $debug; then
+        print '\e[32;1m'"target $target started -- enter 'c' and then trigger a message"'\e[0m' >&2
+        ARGV0=ncip1d NCIP1_TARGET=$target exec perl -d bin/ncip1d $opts
+    fi
+    for target in $(_targets $@); do
+        pid=$(_pidof $target)
+        if (( pid == 0 )); then
+            ARGV0=ncip1d NCIP1_TARGET=$target bin/ncip1d $opts >> log/$target.log 2>&1 &
+            sleep 0.5
+            pid=$(_pidof $target)
+            _note $target started \($pid\)
+        else
+            _note $target already running \($pid\)
+        fi
+    done
+}
+
+stop() {
+    integer pid err=0
+    typeset target
+    for target in $(_targets $@); do
+        pid=$(_pidof $target)
+        if (( pid == 0 )); then
+            _note $target not running
+        elif kill $pid; then
+            _note $target stopped
+        else
+            err=$?
+            _note $target could not be stopped
+        fi
+    done
+    return $err
+}
+
+status() {
+    integer pid err=0
+    typeset target
+    for target in $(_targets $@); do
+        pid=$(_pidof $target)
+        if (( pid == 0 )); then
+            _note $target not running
+            err=2
+        else
+            _note $target running \($pid\)
+        fi
+    done
+    return $err
+}
+
+_targets() {
+    if (( $#argv > 0 )); then
+        print -l -- $@
+    else
+        typeset target
+        set conf/*/server.conf
+        print -l $@:h:t
+    fi
+}
+
+_pidof() {
+    typeset target=$1
+    typeset port
+    for port in $(_ports $target); do
+        netstat -nlp 2> /dev/null | awk '/:'$port' / && match($NF, /[0-9]+/) { print substr($NF,RSTART,RLENGTH) }'
+    done
+}
+
+_ports() {
+    typeset target
+    for target in $(_targets $@); do
+        [[ -e conf/$target/server.conf ]] || continue
+        awk '/^port / { print $2 }' conf/$target/server.conf
+    done
+}
+
+_note() {
+    typeset target=$1; shift
+    typeset msg="$*"
+    printf '%-7s %s\n' $target $msg >&2
+}
+
+main $@
