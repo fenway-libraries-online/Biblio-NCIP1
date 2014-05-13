@@ -1,6 +1,5 @@
 Build.PL
 lib/Biblio/NCIP1.pm
-lib/Biblio/NCIP1/Backend/Vger8.pm
 lib/Biblio/NCIP1/Common.pm
 lib/Biblio/NCIP1/Config.pm
 lib/Biblio/NCIP1/Constants.pm
@@ -19,6 +18,6 @@ lib/Biblio/NCIP1/Trace.pm
 LICENSE
 MANIFEST
 MANIFEST.SKIP
-README.md
-META.yml
 META.json
+META.yml
+README.md

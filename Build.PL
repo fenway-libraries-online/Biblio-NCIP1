@@ -20,13 +20,10 @@ my %module_build_args = (
     'recommends' => {},
     'recursive_test_files' => 1,
     'requires' => {
-        'Biblio::SIP2::Vger8' => 0,
-        'Biblio::Vger::DBI' => 0,
         'Carp' => 0,
         'Net::Server' => 0,
         'Package::Constants' => 0,
         'XML::Simple' => 0,
-        'YAML' => 0,
     },
     'script_files' => [],
 );
