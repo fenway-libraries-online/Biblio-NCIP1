@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Responder;
 
+use strict;
+use warnings;
+
 use Biblio::NCIP1::Common;
 use Biblio::NCIP1::Request;
 use Biblio::NCIP1::Config;

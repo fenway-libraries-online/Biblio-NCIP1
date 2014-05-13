@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Request::AcceptItem;
 
+use strict;
+use warnings;
+
 ## We are the borrowing ILS
 
 use vars qw(@ISA);

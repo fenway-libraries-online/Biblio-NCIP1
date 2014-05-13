@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Request::LookupUser;
 
+use strict;
+use warnings;
+
 ## We are the borrowing *or* lending ILS
 
 use vars qw(@ISA);

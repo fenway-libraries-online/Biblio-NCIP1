@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Request::CreateUser;
 
+use strict;
+use warnings;
+
 ## We are the lending ILS
 
 use vars qw(@ISA);

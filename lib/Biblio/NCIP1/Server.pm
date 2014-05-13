@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Server;
 
+use strict;
+use warnings;
+
 use Biblio::NCIP1::Common;
 use Net::Server;
 

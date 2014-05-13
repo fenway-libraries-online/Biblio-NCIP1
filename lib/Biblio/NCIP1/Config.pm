@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Config;
 
+use strict;
+use warnings;
+
 sub parse {
     my ($cls, $file) = @_;
     open my $fh, '<', $file or die "Can't open file $file for reading: $!";

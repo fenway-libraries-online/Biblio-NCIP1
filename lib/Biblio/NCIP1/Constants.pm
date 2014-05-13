@@ -1,5 +1,8 @@
 package Biblio::NCIP1::Constants;
 
+use strict;
+use warnings;
+
 BEGIN {
     require Exporter;
     use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
