@@ -1,0 +1,102 @@
+{
+   "abstract" : "NCIP version 1 responder framework",
+   "author" : [
+      "Paul Hoffman <paul@flo.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4004, CPAN::Meta::Converter version 2.112621",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Biblio-NCIP1",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : 0,
+            "Test::More" : 0
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : 0
+         }
+      }
+   },
+   "provides" : {
+      "Biblio::NCIP1" : {
+         "file" : "lib/Biblio/NCIP1.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Backend::Vger8" : {
+         "file" : "lib/Biblio/NCIP1/Backend/Vger8.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Config" : {
+         "file" : "lib/Biblio/NCIP1/Config.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Constants" : {
+         "file" : "lib/Biblio/NCIP1/Constants.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request" : {
+         "file" : "lib/Biblio/NCIP1/Request.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::AcceptItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/AcceptItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::CancelRequestItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/CancelRequestItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::CheckInItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/CheckInItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::CheckOutItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/CheckOutItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::CreateUser" : {
+         "file" : "lib/Biblio/NCIP1/Request/CreateUser.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::LookupUser" : {
+         "file" : "lib/Biblio/NCIP1/Request/LookupUser.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::RenewItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/RenewItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Request::RequestItem" : {
+         "file" : "lib/Biblio/NCIP1/Request/RequestItem.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Responder" : {
+         "file" : "lib/Biblio/NCIP1/Responder.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Server" : {
+         "file" : "lib/Biblio/NCIP1/Server.pm",
+         "version" : 0
+      },
+      "Biblio::NCIP1::Trace" : {
+         "file" : "lib/Biblio/NCIP1/Trace.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.03"
+}
