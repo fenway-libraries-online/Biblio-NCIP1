@@ -1,8 +1,15 @@
 package Biblio::NCIP1;
 
+use strict;
+use warnings;
+
 use Biblio::NCIP1::Common;
 use Biblio::NCIP1::Config;
 use Biblio::NCIP1::Responder;
+
+use vars qw($VERSION);
+
+$VERSION = '0.04';
 
 sub new {
     my $cls = shift;
