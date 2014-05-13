@@ -6,3 +6,5 @@ Build(/|$)
 ^MYMETA\.json$
 \.bak$
 ^old(/|$)
+blib(/|$)
+Biblio-.*\.gz
