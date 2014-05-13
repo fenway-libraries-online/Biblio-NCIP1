@@ -44,23 +44,6 @@ sub responder {
     return @_ ? $self->{responder} = shift : $self->{responder};
 }
 
-# sub post_configure_hook {
-#     $ncip_config = Biblio::NCIP1::Config->parse('conf/vger8/ncip.conf');
-#     $sip_config  = Biblio::NCIP1::Config->parse('conf/vger8/sip.conf');
-#     $loc_config  = Biblio::NCIP1::Config->parse('conf/vger8/locations.conf');
-#     $responder   = Biblio::NCIP1::Server->new(
-#         %$ncip_config,
-#         'backend' => Biblio::NCIP1::Backend::Vger8->new(
-#             'config' => {
-#                 'sip' => $sip_config,
-#                 'locations' => $loc_config,
-#             },
-#         ),
-#     );
-#     ### # DON'T ignore SIGTERM -- the Voyager backup script triggers it
-#     ### $SIG{TERM} = 'IGNORE';
-# }
-
 sub read_ncip_request {
     my ($timeout) = @_;
     $timeout ||= 10;
