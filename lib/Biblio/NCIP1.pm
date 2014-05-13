@@ -43,6 +43,7 @@ sub run_once {
     my $responder = $self->{'responder'};
     $_->startup for $backend, $responder;
     my $xml = $self->read_request($fh);
+    my $err;
     if (defined $xml) {
         ($xml, $err) = $responder->handle_ncip_request($xml);
         die "Fatal error: $err" if $err;
@@ -78,7 +79,7 @@ sub run {
     my $backend = $self->{'backend'};
     my $responder = $self->{'responder'};
     my $server = $self->{'server'} = $server_pkg->new(
-        'config' => { %$server_config, %config },
+        'config' => { %$server_config, %$config },
     );
     $_->startup for $backend, $responder, $server;
     $server->responder($responder);
