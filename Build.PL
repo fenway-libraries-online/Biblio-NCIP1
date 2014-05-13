@@ -14,16 +14,23 @@ my %module_build_args = (
     'dist_abstract' => 'NCIP version 1 responder framework',
     'dist_author' => [ 'Paul Hoffman <paul@flo.org>' ],
     'dist_name' => 'Biblio-NCIP1',
-    'dist_version' => '0.03',
+    #'dist_version' => '0.03',
     'license' => 'perl',
     'module_name' => 'Biblio::NCIP1',
     'recommends' => {},
     'recursive_test_files' => 1,
-    'requires' => {},
+    'requires' => {
+        'Biblio::SIP2::Vger8' => 0,
+        'Biblio::Vger::DBI' => 0,
+        'Carp' => 0,
+        'Net::Server' => 0,
+        'Package::Constants' => 0,
+        'XML::Simple' => 0,
+        'YAML' => 0,
+    },
     'script_files' => [],
 );
 
 my $build = Module::Build->new(%module_build_args);
 
 $build->create_build_script;
-
