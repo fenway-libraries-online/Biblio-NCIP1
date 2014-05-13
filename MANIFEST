@@ -1,3 +1,5 @@
+bin/ncip1ctl
+bin/ncip1d
 Build.PL
 lib/Biblio/NCIP1.pm
 lib/Biblio/NCIP1/Common.pm
@@ -18,6 +20,7 @@ lib/Biblio/NCIP1/Trace.pm
 LICENSE
 MANIFEST
 MANIFEST.SKIP
-META.json
 META.yml
+MYMETA.json~
+MYMETA.yml~
 README.md
