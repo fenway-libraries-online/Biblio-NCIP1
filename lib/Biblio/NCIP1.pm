@@ -108,3 +108,11 @@ sub find_server {
 }
 
 1;
+
+=pod
+
+=head1 NAME
+
+Biblio::NCIP1 - NCIP version 1 framework
+
+=cut
