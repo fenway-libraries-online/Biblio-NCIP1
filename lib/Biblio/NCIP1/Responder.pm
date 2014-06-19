@@ -26,7 +26,7 @@ sub new {
 sub startup {
     my ($self) = @_;
     my $config_file = $self->{'config_file'};
-    print STDERR "** responder NCIP target: $ENV{NCIP1_TARGET}\n";
+    print STDERR "** responder NCIP target: $ENV{NCIP_TARGET}\n";
     print STDERR "** responder config file: $config_file\n";
 }
 

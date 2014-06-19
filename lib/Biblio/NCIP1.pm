@@ -15,7 +15,7 @@ sub new {
     my $cls = shift;
     my $self = bless { @_ }, $cls;
     my $root = $self->{'root'} ||= $ENV{'NCIP1_ROOT'} || '/usr/local/ncip1';
-    my $target = $self->{'target'} ||= $ENV{'NCIP1_TARGET'};
+    my $target = $self->{'target'} ||= $ENV{'NCIP_TARGET'};
     my $config = $self->{'config'} = Biblio::NCIP1::Config->parse("$root/conf/$target/ncip1.conf");
     my $backend_pkg = $self->use_package($config->{'backend'}{'package'} || die "NCIP1 backend not configured");
     my $backend = $self->{'backend'} = $backend_pkg->new(
