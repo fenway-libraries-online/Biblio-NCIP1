@@ -10,8 +10,8 @@ use base qw(Net::Server);
 
 sub startup {
     my ($self) = @_;
-    my $config_file = $self->{'config_file'};
-    print STDERR "** backend config file: $config_file\n";
+    my $conf_file = $self->{'conf_file'};
+    print STDERR "** backend config file: $conf_file\n" if defined $conf_file;
 }
 
 sub teardown { }

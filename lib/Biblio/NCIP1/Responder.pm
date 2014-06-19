@@ -12,11 +12,11 @@ sub new {
     my $cls = shift;
     my $self = bless { @_ }, $cls;
     my $config = $self->{'config'} ||= {};
-    my $config_file = $self->{'config_file'};
-    if ($config_file) {
+    my $conf_file = $self->{'conf_file'};
+    if ($conf_file) {
         %$config = (
             %$config,
-            %{ Biblio::NCIP1::Config->parse($config_file) },
+            %{ Biblio::NCIP1::Config->parse($conf_file) },
         );
     }
     return $self;
@@ -25,9 +25,9 @@ sub new {
 
 sub startup {
     my ($self) = @_;
-    my $config_file = $self->{'config_file'};
+    my $conf_file = $self->{'conf_file'};
     print STDERR "** responder NCIP target: $ENV{NCIP_TARGET}\n";
-    print STDERR "** responder config file: $config_file\n" if defined $config_file;
+    print STDERR "** responder config file: $conf_file\n" if defined $conf_file;
 }
 
 sub teardown {
