@@ -22,7 +22,7 @@ sub new {
     die if @etc;
     my $subcls = $cls . '::' . $msgtype;
     eval "use $subcls";
-    $subcls = $cls if @$;
+    $subcls = $cls if $@;
     my $self = bless { version => $version, msgtype => $msgtype }, $subcls;
     $self->parse_header(delete $body->{InitiationHeader});
     $self->parse_message($body);

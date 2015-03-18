@@ -7,6 +7,7 @@ use Biblio::NCIP1::Common;
 use Biblio::NCIP1::Request;
 use Biblio::NCIP1::Config;
 use Biblio::NCIP1::Constants qw(:errors);
+use Data::Dumper;
 
 sub new {
     my $cls = shift;
@@ -25,9 +26,9 @@ sub new {
 
 sub startup {
     my ($self) = @_;
-    my $config_file = $self->{'config_file'};
+    my $config_file = $self->{'config_file'} || '(undefined)';
     print STDERR "** responder NCIP target: $ENV{NCIP_TARGET}\n";
-    print STDERR "** responder config file: $config_file\n" if defined $config_file;
+    print STDERR "** responder config file: $config_file\n";
 }
 
 sub teardown {
@@ -49,8 +50,10 @@ sub handle_ncip_request {
         my $backend = $self->{backend};
         my $method = $backend->can($type)
             || die ERR_UNSUPPORTED_SERVICE;
-        $DB::single = 1 if keys %DB::;  # WAS: if $self->{'debug'}{'request'};
-        print STDERR "** $_\n" for split /\n/, Data::Dumper->Dump([\%ENV, \%INC], [qw(ENV INC)]);
+        if ($self->{debug}{request}) {
+            print STDERR "** $_\n" for split /\n/, Data::Dumper->Dump([$backend, \%ENV, \%INC], [qw(backend ENV INC)]);
+        }
+        $DB::single = 1 if keys %DB::;
         $result = $method->($backend, $req);
         $ok = defined $result;
     };
