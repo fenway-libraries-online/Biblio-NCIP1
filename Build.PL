@@ -24,7 +24,7 @@ my %module_build_args = (
         'Package::Constants' => 0,
         'XML::Simple' => 0,
     },
-    'script_files' => [ qw(bin/ncip1ctl bin/ncip1d) ],
+    'script_files' => [ qw(bin/ncipctl bin/ncipd) ],
 );
 
 my $build = Module::Build->new(%module_build_args);
