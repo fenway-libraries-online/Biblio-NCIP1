@@ -9,12 +9,12 @@ use Biblio::NCIP1::Server;
 
 use Getopt::Std;
 
-$0 = 'ncip1d';
+$0 = 'ncipd';
 
 my %opt;
 getopts('t:r:dT', \%opt);
-my $root = $opt{'r'} || $ENV{'NCIP1_ROOT'} || '/usr/local/ncip1';
-my $target = $ENV{'NCIP1_TARGET'} = $opt{'t'} || $ENV{'NCIP1_TARGET'} || die "No target specified";
+my $root = $opt{'r'} || $ENV{'NCIP_ROOT'} || '/usr/local/ncip';
+my $target = $ENV{'NCIP_TARGET'} = $opt{'t'} || $ENV{'NCIP_TARGET'} || die "No target specified";
 
 if ($opt{T}) {
     eval 'use Biblio::NCIP1::Trace';
