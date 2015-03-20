@@ -1,6 +1,6 @@
 #!/bin/zsh -e
 
-typeset root={NCIP_ROOT:-/usr/local/ncip}
+typeset root=${NCIP_ROOT:-/usr/local/ncip}
 typeset -a targets opts
 # Note: opts isn't used at this point
 
