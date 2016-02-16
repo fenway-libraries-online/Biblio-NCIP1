@@ -16,7 +16,7 @@ sub new {
     my $self = bless { @_ }, $cls;
     my $root = $self->{'root'} ||= $ENV{'NCIP_ROOT'} || '/usr/local/ncip';
     my $target = $self->{'target'} ||= $ENV{'NCIP_TARGET'} ||= $ENV{'DATABASE'};
-    my $config = $self->{'config'} = Biblio::NCIP1::Config->parse("$root/conf/$target/vncip.conf");
+    my $config = $self->{'config'} = Biblio::NCIP1::Config->parse("$root/conf/$target/ncip.conf");
     my $backend_pkg = $self->use_package($config->{'backend'}{'package'} ||= 'Biblio::NCIP1::Backend::Vger8');
     my $backend = $self->{'backend'} = $backend_pkg->new(
         'config' => $config->{'backend'},
