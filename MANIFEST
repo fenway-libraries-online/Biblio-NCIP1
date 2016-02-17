@@ -1,6 +1,7 @@
-bin/ncip1ctl
-bin/ncip1d
+bin/ncipctl
+bin/ncipd
 Build.PL
+dist.ini
 lib/Biblio/NCIP1.pm
 lib/Biblio/NCIP1/Common.pm
 lib/Biblio/NCIP1/Config.pm
@@ -21,6 +22,4 @@ LICENSE
 MANIFEST
 MANIFEST.SKIP
 META.yml
-MYMETA.json~
-MYMETA.yml~
 README.md
